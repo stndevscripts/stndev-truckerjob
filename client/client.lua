@@ -1,6 +1,5 @@
 local ESX = exports['es_extended']:getSharedObject()
 local currentJob = nil
-local completedLocations = {}
 local destinationBlip = nil
 
 CreateThread(function()
@@ -42,17 +41,15 @@ function openJobMenu()
     local options = {}
 
     for _, job in ipairs(Config.Jobs) do
-        if not completedLocations[job.name] then
-            options[#options+1] = {
-                title = job.name,
-                description = ('Reward: $%d - $%d'):format(job.reward.min, job.reward.max),
-                icon = job.icon,
-                arrow = true,
-                onSelect = function()
-                    startJob(job)
-                end
-            }
-        end
+        options[#options+1] = {
+            title = job.name,
+            description = ('Reward: $%d - $%d'):format(job.reward.min, job.reward.max),
+            icon = job.icon,
+            arrow = true,
+            onSelect = function()
+                startJob(job)
+            end
+        }
     end
 
     lib.registerContext({
@@ -84,6 +81,8 @@ function startJob(job)
     destinationBlip = AddBlipForCoord(job.coords.xyz)
     SetBlipRoute(destinationBlip, true)
     SetBlipRouteColour(destinationBlip, 5)
+
+    TriggerServerEvent('stndev:logJobStart', job.name)
 
     showNotify('Attach the trailer and deliver the cargo to the marked location.', 'inform')
 
@@ -133,7 +132,9 @@ function completeDelivery(truck, trailer)
 
     DeleteVehicle(truck)
     DeleteVehicle(trailer)
-    TriggerServerEvent('stndev:giveReward', reward)
+    TriggerServerEvent('stndev:giveReward', reward, currentJob.name)
+    TriggerServerEvent('stndev:logJobComplete', currentJob.name, reward)
+
     showNotify('The cargo has been successfully delivered, here is your reward.', 'success')
 
     if destinationBlip then
@@ -141,7 +142,6 @@ function completeDelivery(truck, trailer)
         destinationBlip = nil
     end
 
-    completedLocations[currentJob.name] = true
     currentJob = nil
 
     Wait(1000)
