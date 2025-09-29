@@ -1,4 +1,4 @@
-# 🛻 StnDev Trucker Job v1.0 – ESX Free Release
+# 🛻 StnDev Trucker Job v1.1 – ESX Free Release
 
 Minimalist, stable and fully configurable trucker job for ESX servers.
 No frills – just a pure experience for players and developers.
@@ -14,6 +14,10 @@ No frills – just a pure experience for players and developers.
 - Continue or end shift
 - Support for ox_lib, okokNotify, ESX notify
 - Configurable locations, vehicles, rewards
+- Anti-abuse
+- Extended security
+
+
 
 ---
 
