@@ -11,7 +11,12 @@ Config.Blip = {
     label = 'Trucker Job'
 }
 
-Config.NotificationType = 'ox' -- 'ox', 'okok', 'esx'
+Config.NotificationType = 'esx' -- 'ox', 'okok', 'esx'
+
+Config.Webhooks = {
+    jobStarted = 'https://discord.com/api/webhooks/1422289838723436652/LI-c05MKctXaNYk_KeRlee7NaL-Cm6Ev9ABKJ7bMk36VZNk4oGgGLWQtcD8YJ4Ijliip',
+    jobCompleted = 'https://discord.com/api/webhooks/1422289956453482640/mP_JR0IyPswygTCftYQBJTgu8QTaXyHB578P0UNq-ucSjw7Zvn3vr0CQ5ne_bWLZTQJo'
+}
 
 Config.Jobs = {
     {
