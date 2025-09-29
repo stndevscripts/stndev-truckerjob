@@ -21,14 +21,6 @@ No frills – just a pure experience for players and developers.
 
 ---
 
-## 📁 Struktura
-shared/config.lua
-client/client.lua
-server/server.lua
-fxmanifest.lua
-
----
-
 ## 🔧 Dependcies
 - [ox_lib](https://github.com/overextended/ox_lib)  
 - [ox_target](https://github.com/overextended/ox_target)  
